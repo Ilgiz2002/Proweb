@@ -11,10 +11,10 @@
 <body>
     <style>
         body {
-            width: 550px;
-            height:400px;
-            padding: 0 30px 30px 30px;
-            margin: 0 auto;
+            width: max-content;
+            height:max-content;
+            padding: 30px;
+            margin: 50px auto;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -29,17 +29,18 @@
             margin-top: 0;
             margin-bottom: 0;
         }
+        input{
+            margin-top: 30px;
+        }
+        .questionGame{
+            text-align: left;
+        }
     </style>
 
     <h1>Поле Чудес</h1>
     <button class="startGame">Начать игру</button>
-    <h2>Вопрос</h2>
-    <p class="questionGame"></p>
-    <h2>Угадайте слово :</h2>
-    <p class="wordGame"></p>
     <div class="Game">
     </div>
-    
     <script src="../js/Field_of_Dreams.js"></script>
 </body>
 
