@@ -2,8 +2,18 @@ const startGame = document.querySelector('.startGame');
 const Game = document.querySelector('.Game');
 
 /* Выбор рандомного слова для игры */
-const words = ['сосулька', 'снег', 'снеговик'];
+const words = ['лёд', 'снег', 'снеговик'];
 const word = words[Math.floor(Math.random() * words.length)];
+const questions = {
+    лёд: `Прозрачен, как стекло,
+    А не вставишь в окно.`,
+    снег: `Бел, да не сахар,
+    Нет ног, а идёт.`,
+    снеговик: `Во дворе стоит с метлой,
+    Дружит с нашей детворой,
+    Улыбается хитро,
+    Вместо шляпы - есть ведро!`
+}
 startGame.addEventListener('click', function () {
     /* Игра . Заполнение блока .Game */
     Game.innerHTML = (`
@@ -15,23 +25,9 @@ startGame.addEventListener('click', function () {
     <div><button class="btn">OK</button></div>  
     `);
 
-    /* Вывод вопросо игры */
+    /* Вывод вопроса игры */
     const questionGame = document.querySelector('.questionGame');
-    switch (word) {
-        case 'сосулька': questionGame.innerText = `Растет она вниз головою,
-        Не летом растет, а зимою.
-        Но солнце ее припечет -
-        Заплачет она и умрет.`;
-            break;
-        case 'снег': questionGame.innerText = `Бел, да не сахар,
-        Нет ног, а идёт.`;
-            break;
-        case 'снеговик': questionGame.innerText = `Во дворе стоит с метлой,
-        Дружит с нашей детворой,
-        Улыбается хитро,
-        Вместо шляпы - есть ведро!`;
-            break;
-    };
+    questionGame.innerText = questions[word];
 
     /* Проверка ввода слова в input */
     const inputGame = document.querySelector('.inputGame');
@@ -48,34 +44,51 @@ startGame.addEventListener('click', function () {
     });
 
 
-    /* Вывод слова и игровой процесс */
+    /*Вывод  Зашифрованного слова */
     const wordGame = document.querySelector('.wordGame');
     let answerArray = [];
     for (let i = 0; i < word.length; i++) {
         answerArray[i] = ('_ ')
     }
-    let remainingLetters = word.length;
+
     wordGame.innerHTML = answerArray.join('');
 
-
+    /* Игровой процесс */
     const btn = document.querySelector('.btn');
     btn.addEventListener('click', function () {
-        let guess = inputGame.value;
         let num = 0;
-        for (let x = word.length; x >= 0; x--) {
+        let remainingLetters = word.length;
+
+        let guess = inputGame.value;
+        for (let x = 0; x < word.length; x++) {
             if (word[x] === guess) {
                 answerArray[x] = guess;
-               remainingLetters--
-               ++num
+                num++;
+            }
+            if(answerArray[x] != '_ '){
+            --remainingLetters;
             }
         }
-        if(num == 0){
+        if(guess == ''){
+            alert('Вы забыли ввести букву !')
+        }else if (num == 0) {
             alert('Нет такой буквы!')
         }
-        if(remainingLetters == 0){
+         
+        if (remainingLetters == 0){
             alert(`Победа !
 Вы угадали слово : ${word} !`)
-        }
+this.disabled = true;
+setTimeout(function() { кнопка.disabled = false }, 1000);
+
+endGame.className = 'reloadGame';
+const reloadGame = document.querySelector('.reloadGame');
+reloadGame.innerHTML = 'Перезагрузить игру'
+reloadGame.addEventListener('click',function(){
+     location.reload()
+})
+}
+
         wordGame.innerHTML = answerArray.join('');
     })
 
