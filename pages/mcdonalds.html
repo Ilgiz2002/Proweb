@@ -1,12 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>McDonalds</title>
+    <link rel="stylesheet" href="../css/mcdonalds.css">
+    <title>Бургерная</title>
 </head>
+
 <body>
+    <form class="menu">
+        <h1 class="menu__title">Меню</h1>
+        <div class="menu__row">
+            <fieldset class="menu__item menu-item" id="bigBurger">
+                <h2 class="menu-item__title">Большой бургер</h2>
+                <img class="menu-item__image"
+                    src="https://static3.depositphotos.com/1000691/109/i/450/depositphotos_1098427-stock-photo-cheeseburger.jpg"
+                    alt="">
+                <div class="menu-item__controls">
+                    <button class="menu-item__btn" data-sim="-">🍽</button>
+                    <output class="menu-item__out">0</output>
+                    <button class="menu-item__btn" data-sim="+">🍔</button>
+                </div>
+                <div class="menu-item__add">
+                    <h3 class="menu-item__add-title">Выберите начинку для бургера</h3>
+                    <div class="menu-item__add-row">
+                        <label class="menu-item__add-item menu-item__add-salat">
+                            <input type="checkbox" data-addition="salat">
+                            <span>Салат</span>
+                        </label>
+                        <label class="menu-item__add-item menu-item__add-cheese">
+                            <input type="checkbox" data-addition="cheese">
+                            <span>Сыр</span>
+                        </label>
+                        <label class="menu-item__add-item menu-item__add-ham">
+                            <input type="checkbox" data-addition="ham">
+                            <span>Ветчина</span>
+                        </label>
+                    </div>
+
+                </div>
+                <div class="menu-item__more">
+                    <h4 class="menu-item__more-title">Дополнить соусом?</h4>
+                    <div class="menu-item__more-row">
+                        <label class="menu-item__more-item menu-item__more-souse">
+                            <input type="checkbox" data-more="souse">
+                            <span>соус</span>
+                        </label>
+                        <label class="menu-item__more-item menu-item__more-may">
+                            <input type="checkbox" data-more="may">
+                            <span>майонез</span>
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="menu__item menu-item" id="middleBurger">
+                <h2 class="menu-item__title">Средний бургер</h2>
+                <img class="menu-item__image"
+                    src="https://static3.depositphotos.com/1000691/109/i/450/depositphotos_1098427-stock-photo-cheeseburger.jpg"
+                    alt="">
+                <div class="menu-item__controls">
+                    <button class="menu-item__btn" data-sim="-">🍽</button>
+                    <output class="menu-item__out">0</output>
+                    <button class="menu-item__btn" data-sim="+">🍔</button>
+                </div>
+                <div class="menu-item__add">
+                    <h3 class="menu-item__add-title">Выберите начинку для бургера</h3>
+                    <div class="menu-item__add-row">
+                        <label class="menu-item__add-item menu-item__add-salat">
+                            <input type="checkbox" data-addition="salat">
+                            <span>Салат</span>
+                        </label>
+                        <label class="menu-item__add-item menu-item__add-cheese">
+                            <input type="checkbox" data-addition="cheese">
+                            <span>Сыр</span>
+                        </label>
+                        <label class="menu-item__add-item menu-item__add-ham">
+                            <input type="checkbox" data-addition="ham">
+                            <span>Ветчина</span>
+                        </label>
+                    </div>
+
+                </div>
+                <div class="menu-item__more">
+                    <h4 class="menu-item__more-title">Дополнить соусом?</h4>
+                    <div class="menu-item__more-row">
+                        <label class="menu-item__more-item menu-item__more-souse">
+                            <input type="checkbox" data-more="souse">
+                            <span>соус</span>
+                        </label>
+                        <label class="menu-item__more-item menu-item__more-may">
+                            <input type="checkbox" data-more="may">
+                            <span>майонез</span>
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="menu__item menu-item" id="minBurger">
+                <h2 class="menu-item__title">Маленький бургер</h2>
+                <img class="menu-item__image"
+                    src="https://static3.depositphotos.com/1000691/109/i/450/depositphotos_1098427-stock-photo-cheeseburger.jpg"
+                    alt="">
+                <div class="menu-item__controls">
+                    <button class="menu-item__btn" data-sim="-">🍽</button>
+                    <output class="menu-item__out">0</output>
+                    <button class="menu-item__btn" data-sim="+">🍔</button>
+                </div>
+                <div class="menu-item__add">
+                    <h3 class="menu-item__add-title">Выберите начинку для бургера</h3>
+                    <div class="menu-item__add-row">
+                        <label class="menu-item__add-item menu-item__add-salat">
+                            <input type="checkbox" data-addition="salat">
+                            <span>Салат</span>
+                        </label>
+                        <label class="menu-item__add-item menu-item__add-cheese">
+                            <input type="checkbox" data-addition="cheese">
+                            <span>Сыр</span>
+                        </label>
+                        <label class="menu-item__add-item menu-item__add-ham">
+                            <input type="checkbox" data-addition="ham">
+                            <span>Ветчина</span>
+                        </label>
+                    </div>
+
+                </div>
+                <div class="menu-item__more">
+                    <h4 class="menu-item__more-title">Дополнить соусом?</h4>
+                    <div class="menu-item__more-row">
+                        <label class="menu-item__more-item menu-item__more-souse">
+                            <input type="checkbox" data-more="souse">
+                            <span>соус</span>
+                        </label>
+                        <label class="menu-item__more-item menu-item__more-may">
+                            <input type="checkbox" data-more="may">
+                            <span>майонез</span>
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <button class="menu__btn-send">заказать</button>
+
+        <div class="receipt-block">
+            <p class="output-receipt">
+
+            </p>
+            <span class="receipt-closed">✖</span>
+            <button class="receipt-pay">Оплатить</button>
+            <button class="confirm-buy"></button>
+        </div>
+        
+    </form>
     <script src="../js/mcdonalds.js"></script>
 </body>
+
 </html>

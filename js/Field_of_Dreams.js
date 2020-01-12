@@ -79,7 +79,7 @@ startGame.addEventListener('click', function () {
             alert(`Победа !
 Вы угадали слово : ${word} !`)
 this.disabled = true;
-setTimeout(function() { кнопка.disabled = false }, 1000);
+setTimeout(function() { this.disabled = false }, 1000);
 
 endGame.className = 'reloadGame';
 const reloadGame = document.querySelector('.reloadGame');

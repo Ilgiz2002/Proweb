@@ -1,74 +1,216 @@
-for (let i = 0; i < Infinity; i++) {
-    var burger = prompt(`Выберите бургер большой или маленький:
-Большой - 0
-Средний - 1
-Маленький - 2`);
-    if (!isNaN(burger) && burger >= 0 && burger <= 2 && burger !== '' && burger !== null && burger.length == 1) {
-        break;
+const burgers = {
+    bigBurger: {
+        name: 'Большой бургер :',
+        price: 10000,
+        kcal: 340,
+        thing: 0
+    },
+    middleBurger: {
+        name: 'Средний бургер :',
+        price: 7500,
+        kcal: 280,
+        thing: 0
+    },
+    minBurger: {
+        name: 'Маленький бургер :',
+        price: 5000,
+        kcal: 250,
+        thing: 0
+    }
+}
+const addition = {
+    salat: {
+        name: 'Салат',
+        price: 1500,
+        kcal: 5
+    },
+    cheese: {
+        name: 'Cыр',
+        price: 2000,
+        kcal: 25
+    },
+    ham: {
+        name: 'Ветчина',
+        price: 5000,
+        kcal: 50
+    }
+}
+const moreAdd = {
+    souse: {
+        name: 'Cоус',
+        price: 500,
+        kcal: 4
+    },
+    may: {
+        name: 'Майонез',
+        price: 500,
+        kcal: 10
     }
 }
 
+const plusOrMinusBtns = document.querySelectorAll('.menu-item__btn');
+const inputs = document.querySelectorAll('input[type="checkbox"]');
+const btnSend = document.querySelector('.menu__btn-send');
 
-let burgers = [['Большой бургер', 340, 10000], ['Средний бургер', 300, 7500], ['Маленький бургер', 250, 5000]];
-
-let filings = [['Салат', 5, 1500], ['Сыр', 25, 2000], ['Ветчина', 50, 5000]];
-
-let sauces = [['Горчица', 0, 500], ['Майонез', 10, 500], ['Кетчуп', 10, 500]];
-
-let drinks = [['Pepsi', 0, 10000], ['Coca Cola', 0, 10000], ['Fanta', 0, 10000]]
+const receiptBlock = document.querySelector('.receipt-block');
+const outputReceipt = document.querySelector('.output-receipt');
+const receiptClosed = document.querySelector('.receipt-closed');
+const receiptPayBtn = document.querySelector('.receipt-pay');
+const confirmBuyBtn = document.querySelector('.confirm-buy');
 
 
-alert('Выберите начинку!');
-for (let i = 0; i < filings.length; i++) {
 
-    var filing = confirm(`${filings[i][0]}?`);
-    if (filing) {
-        applyMyArray(burgers[burger], filings[i]);
-    }
-}
-alert('Выберите соус!');
-for (let i = 0; i < sauces.length; i++) {
 
-    var sauce = confirm(`${sauces[i][0]}?`);
-    if (sauce) {
-        applyMyArray(burgers[burger], sauces[i]);
-    }
-}
-for (let i = 0; i < Infinity; i++) {
-    var drink = prompt(`Выберите напиток :
-Pepsi - 0
-Coca Cola - 1
-Fanta - 2`);
-    if (!isNaN(drink) && drink >= 0 && drink <= 2 && drink !== '' && drink !== null) {
-        applyMyArray(burgers[burger], drinks[drink]);
-        break;
-    }else if (drink == null){
-        break;
-    }
+
+
+
+for (let i = 0; i < plusOrMinusBtns.length; i++) {
+    const el = plusOrMinusBtns[i];
+    el.addEventListener('click', function (e) {
+        e.preventDefault();
+        plusOrMinus(this);
+    })
 }
 
-function applyMyArray(arrPush, arrInset) {
-    for (let i = 0; i < filings.length; i++) {
-        arrPush.push(arrInset[i]);
-    }
+for (let i = 0; i < inputs.length; i++) {
+    const el = inputs[i];
+    el.addEventListener('click', function () {
+        addAdditional(this)
+    })
 }
 
-var totalPrice = 0;
-var totalKcall = 0;
-var totalProducts = '';
-for (let i = 0; i < burgers[burger].length; i++) {
-    if (typeof burgers[burger][i] == 'string') {
-        totalProducts += burgers[burger][i] + '\n';
-        totalPrice += burgers[burger][i + 2];
-        totalKcall += burgers[burger][i + 1];
+
+
+const totalBuy = {}
+
+btnSend.addEventListener('click', function (e) {
+    e.preventDefault();
+    totalBuy.BigBurger = [];
+    totalBuy.MidBurger = [];
+    totalBuy.MinBurger = [];
+    totalBuy.price = 0;
+    totalBuy.kcal = 0;
+
+    for (const item in burgers) {
+        if (burgers[item].thing > 0) {
+            if (item === 'bigBurger') totalBuy.BigBurger.push(burgers[item].name);
+            if (item === 'middleBurger') totalBuy.MidBurger.push(burgers[item].name);
+            if (item === 'minBurger') totalBuy.MinBurger.push(burgers[item].name);
+
+            totalBuy.price += burgers[item].price * burgers[item].thing;
+            totalBuy.kcal += burgers[item].kcal * burgers[item].thing;
+
+            for (let burgerEl in burgers[item]) {
+                if (burgers[item][burgerEl] === true) {
+                    if (item === 'bigBurger') {
+                        if (addition[burgerEl] != undefined) {
+                            totalBuy.BigBurger.push(addition[burgerEl].name)
+                        } else {
+                            totalBuy.BigBurger.push(moreAdd[burgerEl].name)
+                        }
+                    }
+                    if (item === 'middleBurger') {
+                        if (addition[burgerEl] != undefined) {
+                            totalBuy.MidBurger.push(addition[burgerEl].name)
+                        } else {
+                            totalBuy.MidBurger.push(moreAdd[burgerEl].name)
+                        }
+                    }
+                    if (item === 'minBurger') {
+                        if (addition[burgerEl] != undefined) {
+                            totalBuy.MinBurger.push(addition[burgerEl].name)
+                        } else {
+                            totalBuy.MinBurger.push(moreAdd[burgerEl].name)
+                        }
+                    }
+                    if (addition[burgerEl] != undefined) {
+                        totalBuy.price += addition[burgerEl].price * burgers[item].thing
+                        totalBuy.kcal += addition[burgerEl].kcal * burgers[item].thing
+                    } else {
+                        totalBuy.price += moreAdd[burgerEl].price * burgers[item].thing
+                        totalBuy.kcal += moreAdd[burgerEl].kcal * burgers[item].thing
+                    }
+                }
+            }
+            receiptBlock.style = `
+left: 0`
+            outputReceipt.innerText = `Вы купили :
+${totalBuy.BigBurger.join(`
+`)}
+Количество : ${burgers.bigBurger.thing}
+--------------------------
+${totalBuy.MidBurger.join(`
+`)}
+Количество : ${burgers.middleBurger.thing}
+--------------------------
+${totalBuy.MinBurger.join(`
+`)}
+Количество : ${burgers.minBurger.thing}
+--------------------------
+Общая стоимость : ${totalBuy.price} сум
+Общая калорийность : ${totalBuy.kcal}
+Общее количество : ${burgers.bigBurger.thing + burgers.middleBurger.thing + burgers.minBurger.thing}
+`
+        }
     }
+})
+
+
+
+receiptClosed.addEventListener('click', function () {
+    receiptBlock.style = `
+    left: ${receiptBlock.clientWidth}`
+})
+
+receiptPayBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    receiptPayBtn.style = `
+    background: none;
+    border: none;
+    `
+    receiptPayBtn.innerText = "Пожалуйста подождите ... "
+
+    setTimeout(() => {
+        receiptPayBtn.innerHTML = "<span>✔</span> Оплачено"
+
+        receiptPayBtn.style = `
+        font-size: 20px;
+        color: black;
+        background: none;
+        border: none;
+        `
+        receiptPayBtn.lastElementChild.style = `
+        color: green;
+        `
+
+        let x = alert("Спасибо за покупку!")
+        console.log(x);
+
+        if (x == undefined) {
+            btnSend.disabled = true;
+            receiptPayBtn.disabled = true;
+            confirmBuyBtn.innerHTML = 'OK';
+            confirmBuyBtn.addEventListener('click', () => location.reload())
+        }
+    }, 3000);
+})
+
+
+function addAdditional(el) {
+    const burger = el.closest('.menu-item').getAttribute('id');
+
+    if (el.getAttribute('data-addition')) burgers[burger][el.getAttribute('data-addition')] = el.checked
+    if (el.getAttribute('data-more')) burgers[burger][el.getAttribute('data-more')] = el.checked
 }
 
-alert(`Вы купили : 
-${totalProducts}
-Стоимость: ${totalPrice} сум
-Каллорийность: ${totalKcall} ккалл`);
+function plusOrMinus(el) {
+    const out = el.closest('.menu-item__controls').querySelector('.menu-item__out');
+    const burger = el.closest('.menu-item').getAttribute('id');
 
-
-
-
+    if (el.getAttribute('data-sim') == '+' && burgers[burger].thing < 10) {
+        burgers[burger].thing++;
+    } else if (el.getAttribute('data-sim') == '-' && burgers[burger].thing > 0) {
+        burgers[burger].thing--
+    }
+    out.innerHTML = burgers[burger].thing;
+}
